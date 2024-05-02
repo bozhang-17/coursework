@@ -37,10 +37,13 @@ int main(void) {
     // Output the map as a 9x9 array
     for (int i = 0; i < NUMROWS; i++) {
         for (int u = 0; u < NUMCOLS; u++) {
-            printf("%c ", map[i][u]);
+            if(u == 8){
+                printf("%c\n", map[i][u]);
+            } else {
+                printf("%c ", map[i][u]);
+            }
         }
-        if(u < 8){
-        printf("\n");}
+
     }
 
 
