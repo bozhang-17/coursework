@@ -34,7 +34,6 @@ int main(void) {
     }
     fclose(fptr);
     // Output the map as a 9x9 array
-    printf("Map: \n");
     for (int i = 0; i < NUMROWS; i++) {
         for (int u = 0; u < NUMCOLS; u++) {
             printf("%c ", map[i][u]);
@@ -176,8 +175,7 @@ int main(void) {
     }
 
   }
-  printf("\n");
-  printf("Probability of escape:  \n");
+
   for (int i = 0; i < NUMROWS; i++) {
       for (int u = 0; u < NUMCOLS; u++) {
           printf("%.2lf ", pmap[i][u]);
@@ -186,8 +184,7 @@ int main(void) {
       printf("\n");
   }
 
-    printf("\n");
-    printf("Mean path length: \n");
+
    for (int i = 0; i < NUMROWS; i++) {
        for (int u = 0; u < NUMCOLS; u++) {
            printf("%.2lf ", mmap[i][u]);
