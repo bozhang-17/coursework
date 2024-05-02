@@ -183,7 +183,11 @@ int main(void) {
 
   for (int i = 0; i < NUMROWS; i++) {
       for (int u = 0; u < NUMCOLS; u++) {
-          printf("%.2lf ", pmap[i][u]);
+        if(u == 8){
+                printf("%c\n", pmap[i][u]);
+            } else {
+                printf("%.2lf ", pmap[i][u]);
+            }
 
       }
       printf("\n");
@@ -192,15 +196,21 @@ int main(void) {
 
    for (int i = 0; i < NUMROWS; i++) {
        for (int u = 0; u < NUMCOLS; u++) {
-           printf("%.2lf ", mmap[i][u]);
-
+                if(u == 8){
+                printf("%c\n", mmap[i][u]);
+            } else {
+                printf("%.2lf ", mmap[i][u]);
+            }
        }
        printf("\n");
    }
      for (int i = 0; i < NUMROWS; i++) {
          for (int u = 0; u < NUMCOLS; u++) {
-             printf("%.2lf ", smap[i][u]);
-
+                if(u == 8){
+                printf("%c\n", smap[i][u]);
+            } else {
+                printf("%.2lf ", smap[i][u]);
+            }
          }
          printf("\n");
      }
