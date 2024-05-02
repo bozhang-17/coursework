@@ -10,6 +10,7 @@ int main(void) {
   double mean = 0;
   int ts = 0;
   int lab=0;
+  int u = 0;
   double var = 0;
   double stand = 0;
     // Load the map
@@ -38,7 +39,8 @@ int main(void) {
         for (int u = 0; u < NUMCOLS; u++) {
             printf("%c ", map[i][u]);
         }
-        printf("\n");
+        if(u < 8){
+        printf("\n");}
     }
 
 
@@ -192,8 +194,6 @@ int main(void) {
        }
        printf("\n");
    }
-    printf("\n");
-    printf("Standard deviation of path length: \n");
      for (int i = 0; i < NUMROWS; i++) {
          for (int u = 0; u < NUMCOLS; u++) {
              printf("%.2lf ", smap[i][u]);
