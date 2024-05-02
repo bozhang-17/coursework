@@ -4,7 +4,7 @@
 #define NUMROWS 9    // map size
 #define NUMCOLS 9    // map size
 int main(void) {
-  srand(01234567);
+  srand(123456);
   int suc = 0;
   int tem = 0;
   double mean = 0;
@@ -184,7 +184,7 @@ int main(void) {
   for (int i = 0; i < NUMROWS; i++) {
       for (int u = 0; u < NUMCOLS; u++) {
         if(u == 8){
-                printf("%.2lf\n", pmap[i][u]);
+                printf("%.2lf", pmap[i][u]);
             } else {
                 printf("%.2lf ", pmap[i][u]);
             }
@@ -197,7 +197,7 @@ int main(void) {
    for (int i = 0; i < NUMROWS; i++) {
        for (int u = 0; u < NUMCOLS; u++) {
                 if(u == 8){
-                printf("%.2lf\n", mmap[i][u]);
+                printf("%.2lf", mmap[i][u]);
             } else {
                 printf("%.2lf ", mmap[i][u]);
             }
@@ -207,7 +207,7 @@ int main(void) {
      for (int i = 0; i < NUMROWS; i++) {
          for (int u = 0; u < NUMCOLS; u++) {
                 if(u == 8){
-                printf("%.2lf\n", smap[i][u]);
+                printf("%.2lf", smap[i][u]);
             } else {
                 printf("%.2lf ", smap[i][u]);
             }
