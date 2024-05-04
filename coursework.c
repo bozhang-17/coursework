@@ -54,7 +54,6 @@ int main(void) {
       suc = 0;
       tem = 0;
       lab = 0;
-      a=0;
       //check if it is W,D,V
       if(map[i][u]=='W' || map[i][u]== 'D' || map[i][u]==  'V')
       {
