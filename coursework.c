@@ -13,7 +13,6 @@ int main(void) {
   int u = 0;
   double var = 0;
   double stand = 0;
-  int a=0;
     // Load the map
     char map[NUMROWS][NUMCOLS];
     double pmap[NUMROWS][NUMCOLS];
@@ -179,7 +178,7 @@ int main(void) {
 
         mean =(double)suc/(double)tem;
         mmap[i][u] = mean;
-        double pb = (double)tem/a;
+        double pb = (double)tem/1000;
         pmap[i][u] = pb*100;
         for (int lab = 0; lab <= tem; lab++){
           
