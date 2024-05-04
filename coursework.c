@@ -55,7 +55,7 @@ int main(void) {
       suc = 0;
       tem = 0;
       lab = 0;
-      lab1++;
+      lab1=0;
       //check if it is W,D,V
       if(map[i][u]=='W' || map[i][u]== 'D' || map[i][u]==  'V')
       {
@@ -79,6 +79,7 @@ int main(void) {
         int step = 0;
         int row = i;//sets the row and col to the starting point
         int col = u;
+        lab1++;
        do{ //loops until the step is 0
         int move =rand() % 8;
         switch (move) {
@@ -178,7 +179,7 @@ int main(void) {
 
         mean =(double)suc/(double)tem;
         mmap[i][u] = mean;
-        double pb = (double)suc/lab1;
+        double pb = (double)tem/lab1;
         pmap[i][u] = pb*100;
         for (int lab = 0; lab <= tem; lab++){
           
