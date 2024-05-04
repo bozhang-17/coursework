@@ -224,7 +224,7 @@ int main(void) {
                 if(u == 8){
                 printf("%.2f", smap[i][u]);
             } else {
-                printf("%.2f ", smap[i][u]);
+                printf("%-.2f ", smap[i][u]);
             }
          }
          printf("\n");
