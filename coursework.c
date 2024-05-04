@@ -13,11 +13,12 @@ int main(void) {
   int u = 0;
   double var = 0;
   double stand = 0;
+  int a=0;
     // Load the map
     char map[NUMROWS][NUMCOLS];
     double pmap[NUMROWS][NUMCOLS];
     double mmap[NUMROWS][NUMCOLS];
-    double sub[100000];
+    double sub[10000];
     double smap[NUMROWS][NUMCOLS];
     FILE *fptr;
     fptr = fopen("island_map.txt", "r");
@@ -54,6 +55,7 @@ int main(void) {
       suc = 0;
       tem = 0;
       lab = 0;
+      a=0;
       //check if it is W,D,V
       if(map[i][u]=='W' || map[i][u]== 'D' || map[i][u]==  'V')
       {
@@ -77,17 +79,16 @@ int main(void) {
         int step = 0;
         int row = i;//sets the row and col to the starting point
         int col = u;
-
+        a++;
        do{ //loops until the step is 0
-        int move = rand() % 8;
-
-         
-
+        int move =rand() % 8;
         switch (move) {
             case 0: // North
               if(row>0){
 
                 row--;
+                 step++;
+
               }
                 break;
             case 1: // Northeast
@@ -97,10 +98,15 @@ int main(void) {
               if(col<8){
                 col++;
               }
+              if(row>0 ||col<8){
+                step++;
+              }
+
                 break;
             case 2: // East
               if(col<8){
                 col++;
+                step++;
               }
                 break;
             case 3: // Southeast
@@ -111,10 +117,14 @@ int main(void) {
               if(col<8){
                 col++;
               }
+              if(row<8 ||col<8){
+                step++;
+              }
                 break;
             case 4: // South
               if(row<8){
                 row++;
+                step++;
               }
 
                 break;
@@ -125,12 +135,16 @@ int main(void) {
               if(col>0){
                 col--;
               }
+              if(row<8 ||col>0){
+                step++;
+              }
 
                 break;
             case 6: // West
               if(col>0){
 
                 col--;
+                step++;
               }
 
                 break;
@@ -141,12 +155,13 @@ int main(void) {
               if(col>0){
                 col--;
               }
+              if(row>0 ||col>0){
+                step++;
+              }
                 break;
         }
-          totalstep=totalstep-1;
-          step++;
-         }
-         while(map[row][col] == 'L' && step<=10 && totalstep>0);//checks if the step is a L and if the total step is less than or equal to 10
+        totalstep=totalstep-1;
+        } while(map[row][col] == 'L' && step<10 && totalstep>0);//checks if the step is a L and if the total step is less than or equal to 10
 
         if(map[row][col] == 'B'){//checks if the step is a B
           suc = suc+step;
@@ -164,7 +179,7 @@ int main(void) {
 
         mean =(double)suc/(double)tem;
         mmap[i][u] = mean;
-        double pb = (double)suc/1000.0;
+        double pb = (double)tem/a;
         pmap[i][u] = pb*100;
         for (int lab = 0; lab <= tem; lab++){
           
@@ -184,9 +199,9 @@ int main(void) {
   for (int i = 0; i < NUMROWS; i++) {
       for (int u = 0; u < NUMCOLS; u++) {
         if(u == 8){
-                printf("%.2lf", pmap[i][u]);
+                printf("%.2f", pmap[i][u]);
             } else {
-                printf("%.2lf ", pmap[i][u]);
+                printf("%.2f ", pmap[i][u]);
             }
 
       }
@@ -197,9 +212,9 @@ int main(void) {
    for (int i = 0; i < NUMROWS; i++) {
        for (int u = 0; u < NUMCOLS; u++) {
                 if(u == 8){
-                printf("%.2lf", mmap[i][u]);
+                printf("%.2f", mmap[i][u]);
             } else {
-                printf("%.2lf ", mmap[i][u]);
+                printf("%.2f ", mmap[i][u]);
             }
        }
        printf("\n");
@@ -207,9 +222,9 @@ int main(void) {
      for (int i = 0; i < NUMROWS; i++) {
          for (int u = 0; u < NUMCOLS; u++) {
                 if(u == 8){
-                printf("%.2lf", smap[i][u]);
+                printf("%.2f", smap[i][u]);
             } else {
-                printf("%.2lf ", smap[i][u]);
+                printf("%.2f ", smap[i][u]);
             }
          }
          printf("\n");
