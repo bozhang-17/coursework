@@ -77,7 +77,6 @@ int main(void) {
         int step = 0;
         int row = i;//sets the row and col to the starting point
         int col = u;
-        a++;
        do{ //loops until the step is 0
         int move =rand() % 8;
         switch (move) {
