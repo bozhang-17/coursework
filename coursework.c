@@ -181,7 +181,7 @@ int main(void) {
         mmap[i][u] = mean;
         double pb = (double)tem/lab1;
         pmap[i][u] = pb*100;
-        for (int lab = 0; lab <= tem; lab++){
+        for (int lab = 0; lab < tem; lab++){
           
         var+=pow(sub[lab]-mean,2);
           
