@@ -179,15 +179,15 @@ int main(void) {
 
         mean =(double)suc/(double)tem;
         mmap[i][u] = mean;
-        double pb = (double)tem/lab1;
+        double pb = (double)tem/lab;
         pmap[i][u] = pb*100;
         for (int lab = 0; lab <= tem; lab++){
           
         var+=pow(sub[lab]-mean,2);
           
       }
-        
-        double stand = (double)sqrt(var/tem);
+        var/=tem;
+        double stand = (double)sqrt(var);
         smap[i][u] = stand;
         var = 0;
       }
