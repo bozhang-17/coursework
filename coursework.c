@@ -76,7 +76,7 @@ int main(void) {
         int row = i;
         int col = u;
       while (totalstep>0){//loops until the total step is 0
-        int step = 0;
+        int stap = 0;
         int row = i;//sets the row and col to the starting point
         int col = u;
         lab1++;
@@ -87,7 +87,7 @@ int main(void) {
               if(row>0){
 
                 row--;
-                step++;
+                stap++;
 
               }
                 break;
@@ -98,15 +98,15 @@ int main(void) {
               if(col<8){
                 col++;
               }
-              if(row>0 ||col<8){
-                step++;
+              if(row>=0 ||col<=8){
+                stap++;
               }
 
                 break;
             case 2: // East
               if(col<8){
                 col++;
-                step++;
+                stap++;
               }
                 break;
             case 3: // Southeast
@@ -117,14 +117,14 @@ int main(void) {
               if(col<8){
                 col++;
               }
-              if(row<8 ||col<8){
-                step++;
+              if(row<=8 ||col<=8){
+                stap++;
               }
                 break;
             case 4: // South
               if(row<8){
                 row++;
-                step++;
+                stap++;
               }
 
                 break;
@@ -135,8 +135,8 @@ int main(void) {
               if(col>0){
                 col--;
               }
-              if(row<8 ||col>0){
-                step++;
+              if(row<=8 ||col>=0){
+                stap++;
               }
 
                 break;
@@ -144,7 +144,7 @@ int main(void) {
               if(col>0){
 
                 col--;
-                step++;
+                stap++;
               }
 
                 break;
@@ -155,24 +155,24 @@ int main(void) {
               if(col>0){
                 col--;
               }
-              if(row>0 ||col>0){
-                step++;
+              if(row>=0 ||col>=0){
+                stap++;
               }
                 break;
         }
         totalstep=totalstep-1;
-        } while(map[row][col] == 'L' && step<10 && totalstep>0);//checks if the step is a L and if the total step is less than or equal to 10
+        } while(map[row][col] == 'L' && stap<10 && totalstep>0);//checks if the step is a L and if the total step is less than or equal to 10
 
         if(map[row][col] == 'B'){//checks if the step is a B
-          suc = suc+step;
+          suc += stap;
+          sub[tem]=stap;//xi
           tem = tem+1;
           
-          sub[lab]=step;//xi
-          lab++;
+
         }
 
 
-        step = 0;
+        stap = 0;
 
 
       }
