@@ -84,7 +84,7 @@ int main(void) {
               if(row>0){
 
                 row--;
-                 step++;
+                step++;
 
               }
                 break;
@@ -176,7 +176,7 @@ int main(void) {
 
         mean =(double)suc/(double)tem;
         mmap[i][u] = mean;
-        double pb = (double)tem/1000;
+        double pb = (double)suc/1000;
         pmap[i][u] = pb*100;
         for (int lab = 0; lab <= tem; lab++){
           
