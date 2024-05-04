@@ -219,12 +219,13 @@ int main(void) {
        }
        printf("\n");
    }
+   printf("Standard deviation of path length:\n");
      for (int i = 0; i < NUMROWS; i++) {
          for (int u = 0; u < NUMCOLS; u++) {
                 if(u == 8){
                 printf("%.2f", smap[i][u]);
             } else {
-                printf("%-.2f ", smap[i][u]);
+                printf("%.2f ", smap[i][u]);
             }
          }
          printf("\n");
