@@ -9,8 +9,8 @@
 void random_step(int *row, int *col,int *step);
 
 int main(void) {
-    srand(123456);
-    double x[10000];
+    srand(01234567);
+    double step_array[10000];
     char map[NUMROWS][NUMCOLS];
     double pmap[NUMROWS][NUMCOLS];
     double mmap[NUMROWS][NUMCOLS];
@@ -82,7 +82,7 @@ int main(void) {
                     if (map[row][col] == 'B') {
                         suc += step;
                         tem++;
-                        x[a]=step;
+                        step_array[a]=step;
                         a++;
                     }
                 }
@@ -92,9 +92,9 @@ int main(void) {
                 double pb = (double) tem / lab1;
                 pmap[i][u] = pb * 100;
                 for(a=0;a<tem;a++){
-                  var+=pow(x[a]-mean,2);
+                  var+=pow(step_array[a]-mean,2);
                 }
-                double stand = (double) sqrt(var / (tem-1));
+                double stand = (double) sqrt(var / tem);
                 smap[i][u] = stand;
             }
         }
