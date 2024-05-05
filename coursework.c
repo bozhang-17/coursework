@@ -6,7 +6,7 @@
 #define NUMROWS 9
 #define NUMCOLS 9
 
-void random_step(int *row, int *col,int *step);
+void random_step(int *row, int *col,int *step,int *totalstep);
 int calculate_status(int suc, int tem, double mean, double var, int lab1);
 
 int main(void) {
@@ -77,8 +77,7 @@ int main(void) {
                     lab1++;
 
                     do {
-                        random_step(&row, &col,&step);
-                        totalstep--;
+                        random_step(&row, &col,&step,&totalstep);
                     } while (map[row][col] == 'L' && step < 10 && totalstep > 0);
 
                     if (map[row][col] == 'B') {
@@ -127,13 +126,15 @@ int main(void) {
     return 0;
 }
 
-void random_step(int *row, int *col, int *step) {
+void random_step(int *row, int *col, int *step,int*totalstep) {
     int move = rand() % 8;
     switch (move) {
         case 0: // North
             if (*row > 0) {
                 (*row)--;
                 (*step)++;
+                (*totalstep)--;
+                
             }
             break;
         case 1: // Northeast
@@ -148,12 +149,14 @@ void random_step(int *row, int *col, int *step) {
             
             if (*row > 0 && *col < 8) {
                 (*step)++;
+                (*totalstep)--;
             }
             break;
         case 2: // East
             if (*col < 8) {
                 (*col)++;
                 (*step)++;
+                (*totalstep)--;
             }
             break;
         case 3: // Southeast
@@ -165,14 +168,16 @@ void random_step(int *row, int *col, int *step) {
         {
                 (*col)++;
         }
-            if (*row < 8 && *col < 8) {
+            if (*row < 8 || *col < 8) {
                 (*step)++;
+                (*totalstep)--;
             }
             break;
         case 4: // South
             if (*row < 8) {
                 (*row)++;
                 (*step)++;
+                (*totalstep)--;
             }
             break;
         case 5: // Southwest
@@ -184,14 +189,16 @@ void random_step(int *row, int *col, int *step) {
         {
                 (*col)--;
         }
-            if (*row < 8 && *col > 0) {
+            if (*row < 8 || *col > 0) {
                 (*step)++;
+                (*totalstep)--;
             }
             break;
         case 6: // West
             if (*col > 0) {
                 (*col)--;
                 (*step)++;
+                (*totalstep)--;
             }
             break;
         case 7: // Northwest
@@ -203,8 +210,9 @@ void random_step(int *row, int *col, int *step) {
         {
                 (*col)--;
         }
-            if (*row > 0 && *col > 0) {
+            if (*row > 0 || *col > 0) {
                 (*step)++;
+                (*totalstep)--;
             }
             break;
     }
