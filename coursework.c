@@ -96,7 +96,7 @@ int main(void) {
                 for(a=0;a<tem;a++){
                   var+=pow(step_array[a]-mean,2);
                 }
-                double stand = (double) sqrt(var / tem);
+                double stand = (double) sqrt(var / (tem-1));
                 smap[i][u] = stand;
             }
         }
@@ -146,7 +146,7 @@ void random_step(int *row, int *col, int *step) {
                 (*col)++;
         }
             
-            if (*row > 0 || *col < 8) {
+            if (*row > 0 && *col < 8) {
                 (*step)++;
             }
             break;
@@ -165,7 +165,7 @@ void random_step(int *row, int *col, int *step) {
         {
                 (*col)++;
         }
-            if (*row < 8 || *col < 8) {
+            if (*row < 8 && *col < 8) {
                 (*step)++;
             }
             break;
@@ -184,7 +184,7 @@ void random_step(int *row, int *col, int *step) {
         {
                 (*col)--;
         }
-            if (*row < 8 || *col > 0) {
+            if (*row < 8 && *col > 0) {
                 (*step)++;
             }
             break;
@@ -203,7 +203,7 @@ void random_step(int *row, int *col, int *step) {
         {
                 (*col)--;
         }
-            if (*row > 0 || *col > 0) {
+            if (*row > 0 && *col > 0) {
                 (*step)++;
             }
             break;
