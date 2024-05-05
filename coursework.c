@@ -96,7 +96,7 @@ int main(void) {
                 for(a=0;a<tem;a++){
                   var+=pow(step_array[a]-mean,2);
                 }
-                double stand = (double) sqrt(var / (tem-1));
+                double stand = (double) sqrt(var / tem);
                 smap[i][u] = stand;
             }
         }
