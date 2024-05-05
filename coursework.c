@@ -7,14 +7,15 @@
 #define NUMCOLS 9
 
 void random_step(int *row, int *col,int *step);
+int calculate_status(int suc, int tem, double mean, double var, int lab1);
 
 int main(void) {
     srand(123456);
     double step_array[10000];
     char map[NUMROWS][NUMCOLS];
-    double pmap[NUMROWS][NUMCOLS];
-    double mmap[NUMROWS][NUMCOLS];
-    double smap[NUMROWS][NUMCOLS];
+    double pmap[NUMROWS][NUMCOLS];//Probability
+    double mmap[NUMROWS][NUMCOLS];//Mean path length
+    double smap[NUMROWS][NUMCOLS];//Standard deviation of path length
 
     FILE *fptr = fopen("island_map.txt", "r");
     if (fptr == NULL) {
@@ -31,6 +32,7 @@ int main(void) {
     }
     fclose(fptr);
     // Output the map as a 9x9 array
+    printf("Map:\n");
     for (int i = 0; i < NUMROWS; i++) {
         for (int u = 0; u < NUMCOLS; u++) {
             if(u == 8){
@@ -101,12 +103,14 @@ int main(void) {
     }
 
     // Output the maps
+    printf("Probability of escape:\n");
     for (int i = 0; i < NUMROWS; i++) {
         for (int u = 0; u < NUMCOLS; u++) {
             printf("%.2f%s", pmap[i][u], (u == NUMCOLS - 1) ? "\n" : " ");
         }
     }
-
+    
+    printf("Mean path length:\n");
     for (int i = 0; i < NUMROWS; i++) {
         for (int u = 0; u < NUMCOLS; u++) {
             printf("%.2f%s", mmap[i][u], (u == NUMCOLS - 1) ? "\n" : " ");
@@ -205,3 +209,4 @@ void random_step(int *row, int *col, int *step) {
             break;
     }
 }
+
