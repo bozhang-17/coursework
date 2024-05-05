@@ -86,7 +86,7 @@ int main(void) {
                         a++;
                     }
                 }
-
+    
                 mean = (double) suc / tem;
                 mmap[i][u] = mean;
                 double pb = (double) tem / lab1;
@@ -94,7 +94,7 @@ int main(void) {
                 for(a=0;a<tem;a++){
                   var+=pow(step_array[a]-mean,2);
                 }
-                double stand = (double) sqrt(var / (tem-1));
+                double stand = (double) sqrt(var / tem);
                 smap[i][u] = stand;
             }
         }
@@ -133,9 +133,16 @@ void random_step(int *row, int *col, int *step) {
             }
             break;
         case 1: // Northeast
-            if (*row > 0 && *col < 8) {
+        if (*row > 0)
+        {
                 (*row)--;
+        }
+        if (*col < 8)
+        {
                 (*col)++;
+        }
+            
+            if (*row > 0 || *col < 8) {
                 (*step)++;
             }
             break;
@@ -146,9 +153,15 @@ void random_step(int *row, int *col, int *step) {
             }
             break;
         case 3: // Southeast
-            if (*row < 8 && *col < 8) {
+                if (*row < 8)
+        {
                 (*row)++;
+        }
+        if (*col < 8)
+        {
                 (*col)++;
+        }
+            if (*row < 8 || *col < 8) {
                 (*step)++;
             }
             break;
@@ -159,9 +172,15 @@ void random_step(int *row, int *col, int *step) {
             }
             break;
         case 5: // Southwest
-            if (*row < 8 && *col > 0) {
+                        if (*row < 8)
+        {
                 (*row)++;
+        }
+        if (*col > 0)
+        {
                 (*col)--;
+        }
+            if (*row < 8 || *col > 0) {
                 (*step)++;
             }
             break;
@@ -172,9 +191,15 @@ void random_step(int *row, int *col, int *step) {
             }
             break;
         case 7: // Northwest
-            if (*row > 0 && *col > 0) {
+         if (*row > 0)
+        {
                 (*row)--;
+        }
+        if (*col > 0)
+        {
                 (*col)--;
+        }
+            if (*row > 0 || *col > 0) {
                 (*step)++;
             }
             break;
