@@ -70,7 +70,7 @@ int main(void) {
             }
 
             if (map[i][u] == 'L') {
-                while (totalstep > 0) {
+                while (lab1 < 1000) {
                     int step = 0;
                     int row = i;
                     int col = u;
@@ -78,7 +78,7 @@ int main(void) {
 
                     do {
                         random_step(&row, &col,&step,&totalstep);
-                    } while (map[row][col] == 'L' && step < 10 && totalstep > 0);
+                    } while (map[row][col] == 'L' && step < 10);
 
                     if (map[row][col] == 'B') {
                         suc += step;
@@ -133,7 +133,7 @@ void random_step(int *row, int *col, int *step,int*totalstep) {
             if (*row > 0) {
                 (*row)--;
                 (*step)++;
-                (*totalstep)--;
+              
                 
             }
             break;
@@ -149,14 +149,13 @@ void random_step(int *row, int *col, int *step,int*totalstep) {
             
             if (*row > 0 && *col < 8) {
                 (*step)++;
-                (*totalstep)--;
+               
             }
             break;
         case 2: // East
             if (*col < 8) {
                 (*col)++;
                 (*step)++;
-                (*totalstep)--;
             }
             break;
         case 3: // Southeast
@@ -170,14 +169,12 @@ void random_step(int *row, int *col, int *step,int*totalstep) {
         }
             if (*row < 8 || *col < 8) {
                 (*step)++;
-                (*totalstep)--;
             }
             break;
         case 4: // South
             if (*row < 8) {
                 (*row)++;
                 (*step)++;
-                (*totalstep)--;
             }
             break;
         case 5: // Southwest
@@ -191,14 +188,12 @@ void random_step(int *row, int *col, int *step,int*totalstep) {
         }
             if (*row < 8 || *col > 0) {
                 (*step)++;
-                (*totalstep)--;
             }
             break;
         case 6: // West
             if (*col > 0) {
                 (*col)--;
                 (*step)++;
-                (*totalstep)--;
             }
             break;
         case 7: // Northwest
@@ -212,7 +207,6 @@ void random_step(int *row, int *col, int *step,int*totalstep) {
         }
             if (*row > 0 || *col > 0) {
                 (*step)++;
-                (*totalstep)--;
             }
             break;
     }
