@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -9,7 +10,7 @@ void random_step(int *row, int *col,int *step);
 
 int main(void) {
     srand(123456);
-
+    double x[10000];
     char map[NUMROWS][NUMCOLS];
     double pmap[NUMROWS][NUMCOLS];
     double mmap[NUMROWS][NUMCOLS];
@@ -49,6 +50,7 @@ int main(void) {
             double mean = 0;
             double var = 0;
             int lab1 = 0;
+            int a=0;
 
             if (map[i][u] == 'W' || map[i][u] == 'D' || map[i][u] == 'V') {
                 pmap[i][u] = 0;
@@ -79,7 +81,8 @@ int main(void) {
                     if (map[row][col] == 'B') {
                         suc += step;
                         tem++;
-                        var += pow(step - mean, 2);
+                        x[a]=step;
+                        a++;
                     }
                 }
 
@@ -87,6 +90,9 @@ int main(void) {
                 mmap[i][u] = mean;
                 double pb = (double) tem / lab1;
                 pmap[i][u] = pb * 100;
+                for(a=0;a<tem;a++){
+                  var+=pow(x[a]-mean,2);
+                }
                 double stand = (double) sqrt(var / tem);
                 smap[i][u] = stand;
             }
