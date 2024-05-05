@@ -51,6 +51,7 @@ int main(void) {
             double var = 0;
             int lab1 = 0;
             int a=0;
+            int step_array[10000] = {0};//initial
 
             if (map[i][u] == 'W' || map[i][u] == 'D' || map[i][u] == 'V') {
                 pmap[i][u] = 0;
@@ -93,7 +94,7 @@ int main(void) {
                 for(a=0;a<tem;a++){
                   var+=pow(x[a]-mean,2);
                 }
-                double stand = (double) sqrt(var / tem);
+                double stand = (double) sqrt(var / (tem-1));
                 smap[i][u] = stand;
             }
         }
