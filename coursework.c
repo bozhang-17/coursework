@@ -9,7 +9,7 @@
 void random_step(int *row, int *col,int *step);
 
 int main(void) {
-    srand(01234567);
+    srand(123456);
     double step_array[10000];
     char map[NUMROWS][NUMCOLS];
     double pmap[NUMROWS][NUMCOLS];
