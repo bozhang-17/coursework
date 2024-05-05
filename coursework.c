@@ -5,7 +5,7 @@
 #define NUMROWS 9
 #define NUMCOLS 9
 
-void random_step(int *row, int *col);
+void random_step(int *row, int *col,int *step);
 
 int main(void) {
     srand(123456);
@@ -29,6 +29,17 @@ int main(void) {
         }
     }
     fclose(fptr);
+    // Output the map as a 9x9 array
+    for (int i = 0; i < NUMROWS; i++) {
+        for (int u = 0; u < NUMCOLS; u++) {
+            if(u == 8){
+                printf("%c\n", map[i][u]);
+            } else {
+                printf("%c ", map[i][u]);
+            }
+        }
+
+    }
 
     for (int i = 0; i < NUMROWS; i++) {
         for (int u = 0; u < NUMCOLS; u++) {
@@ -61,8 +72,7 @@ int main(void) {
                     lab1++;
 
                     do {
-                        random_step(&row, &col);
-                        step++;
+                        random_step(&row, &col,&step);
                         totalstep--;
                     } while (map[row][col] == 'L' && step < 10 && totalstep > 0);
 
@@ -106,36 +116,60 @@ int main(void) {
     return 0;
 }
 
-void random_step(int *row, int *col) {
+void random_step(int *row, int *col, int *step) {
     int move = rand() % 8;
     switch (move) {
         case 0: // North
-            (*row)--;
+            if (*row > 0) {
+                (*row)--;
+                (*step)++;
+            }
             break;
         case 1: // Northeast
-            (*row)--;
-            (*col)++;
+            if (*row > 0 && *col < 8) {
+                (*row)--;
+                (*col)++;
+                (*step)++;
+            }
             break;
         case 2: // East
-            (*col)++;
+            if (*col < 8) {
+                (*col)++;
+                (*step)++;
+            }
             break;
         case 3: // Southeast
-            (*row)++;
-            (*col)++;
+            if (*row < 8 && *col < 8) {
+                (*row)++;
+                (*col)++;
+                (*step)++;
+            }
             break;
         case 4: // South
-            (*row)++;
+            if (*row < 8) {
+                (*row)++;
+                (*step)++;
+            }
             break;
         case 5: // Southwest
-            (*row)++;
-            (*col)--;
+            if (*row < 8 && *col > 0) {
+                (*row)++;
+                (*col)--;
+                (*step)++;
+            }
             break;
         case 6: // West
-            (*col)--;
+            if (*col > 0) {
+                (*col)--;
+                (*step)++;
+            }
             break;
         case 7: // Northwest
-            (*row)--;
-            (*col)--;
+            if (*row > 0 && *col > 0) {
+                (*row)--;
+                (*col)--;
+                (*step)++;
+            }
             break;
     }
 }
