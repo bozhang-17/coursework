@@ -54,7 +54,7 @@ int main(void) {
         for (int u = 0; u < NUMCOLS; u++) {
             //After looping a thousand times, set all variables to 0.
             int suc = 0;//Initialize the number of step if success
-            int tem = 0;//Initialize the number of success
+            int number_of_success = 0;//Initialize the number of success
             double mean = 0;//Initialize the mean
             double var = 0;//var+=pow(step_array[a]-mean,2)
             int try = 0;//Number of try
@@ -92,26 +92,26 @@ int main(void) {
 
                     if (map[row][col] == 'B') {
                         suc += step;//the number of step if success
-                        tem ++;//the number of success
+                        number_of_success ++;//the number of success
                         step_array[a]=step;//for caluating standard deviation
                         a++;//for step_array[a]
                     }
                 }
                 
                 //caluate Probability
-                double pb = (double) tem / try;
+                double pb = (double) number_of_success / try;
                 pmap[i][u] = pb * 100;
 
                 //caluate mean
-                mean = (double) suc / tem;
+                mean = (double) suc / number_of_success;
                 mmap[i][u] = mean;
 
 
                 //caluate standard deviation
-                for(a=0;a<tem;a++){
+                for(a=0;a<number_of_success;a++){
                   var+=pow(step_array[a]-mean,2);
                 }
-                double stand = (double) sqrt(var / tem);
+                double stand = (double) sqrt(var / number_of_success);
                 smap[i][u] = stand;
 
 
@@ -156,10 +156,9 @@ void random_step(int *row, int *col, int *step) {
         case 0: // North
             if (*row > 0) {
                 (*row)--;
-                (*step)++;
-              
-                
+ 
             }
+                (*step)++;
             break;
         case 1: // Northeast
         if (*row > 0)
@@ -171,67 +170,69 @@ void random_step(int *row, int *col, int *step) {
                 (*col)++;
         }
             
-            if (*row >= 0 || *col <= 8) {
+
                 (*step)++;
                
-            }
+
             break;
         case 2: // East
             if (*col < 8) {
                 (*col)++;
-                (*step)++;
+                
             }
+            (*step)++;
             break;
         case 3: // Southeast
-                if (*row < 8)
+            if (*row < 8)
         {
                 (*row)++;
         }
-        if (*col < 8)
+            if (*col < 8)
         {
                 (*col)++;
         }
-            if (*row <= 8 || *col <= 8) {
+
                 (*step)++;
-            }
+
             break;
         case 4: // South
             if (*row < 8) {
                 (*row)++;
-                (*step)++;
+               
             }
+             (*step)++;
             break;
         case 5: // Southwest
             if (*row < 8)
         {
                 (*row)++;
         }
-        if (*col > 0)
+            if (*col > 0)
         {
                 (*col)--;
         }
-            if (*row <= 8 || *col >= 0) {
+
                 (*step)++;
-            }
+
             break;
         case 6: // West
             if (*col > 0) {
                 (*col)--;
-                (*step)++;
+                
             }
+            (*step)++;
             break;
         case 7: // Northwest
-         if (*row > 0)
+            if (*row > 0)
         {
                 (*row)--;
         }
-        if (*col > 0)
+            if (*col > 0)
         {
                 (*col)--;
         }
-            if (*row >= 0 || *col >= 0) {
+
                 (*step)++;
-            }
             break;
     }
 }
