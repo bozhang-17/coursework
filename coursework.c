@@ -171,7 +171,7 @@ void random_step(int *row, int *col, int *step) {
                 (*col)++;
         }
             
-            if (*row >= 0 && *col <= 8) {
+            if (*row >= 0 || *col <= 8) {
                 (*step)++;
                
             }
