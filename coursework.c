@@ -156,7 +156,6 @@ void random_step(int *row, int *col, int *step) {
         case 0: // North
             if (*row > 0) {
                 (*row)--;
- 
             }
                 (*step)++;
             break;
@@ -169,16 +168,12 @@ void random_step(int *row, int *col, int *step) {
         {
                 (*col)++;
         }
-            
 
                 (*step)++;
-               
-
             break;
         case 2: // East
             if (*col < 8) {
                 (*col)++;
-                
             }
             (*step)++;
             break;
@@ -191,14 +186,11 @@ void random_step(int *row, int *col, int *step) {
         {
                 (*col)++;
         }
-
                 (*step)++;
-
             break;
         case 4: // South
             if (*row < 8) {
-                (*row)++;
-               
+                (*row)++; 
             }
              (*step)++;
             break;
@@ -211,9 +203,7 @@ void random_step(int *row, int *col, int *step) {
         {
                 (*col)--;
         }
-
                 (*step)++;
-
             break;
         case 6: // West
             if (*col > 0) {
@@ -231,7 +221,6 @@ void random_step(int *row, int *col, int *step) {
         {
                 (*col)--;
         }
-
                 (*step)++;
             break;
     }
