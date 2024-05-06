@@ -6,52 +6,59 @@
 #define NUMCOLS 9
 
 void random_step(int *row, int *col,int *step);
-int calculate_status(int suc, int tem, double mean, double var, int lab1);
 
 int main(void) {
     srand(123456);
-    double step_array[10000];
-    char map[NUMROWS][NUMCOLS];
+    double step_array[10000];//the array which contains the number of step if success
+    char map[NUMROWS][NUMCOLS];//array of Map
     double pmap[NUMROWS][NUMCOLS];//array of Probability
     double mmap[NUMROWS][NUMCOLS];//array of Mean path length
     double smap[NUMROWS][NUMCOLS];//array of Standard deviation of path length
-
-    FILE *fptr = fopen("island_map.txt", "r");
+    
+    // Check if the file pointer is NULL, indicating failure to open the file.
+    FILE *fptr = fopen("island_map.txt", "r");//Open the file in read-only mode
     if (fptr == NULL) {
         printf("Error. Not able to open the file.");
         return 1;
     }
-
+    
+    // Loop through each row of the map.
     for (int i = 0; i < NUMROWS; i++) {
+        // Loop through each column of the map.
         for (int u = 0; u < NUMCOLS; u++) {
             do {
-                fscanf(fptr, "%c", &map[i][u]);
-            } while (map[i][u] == '\n' || map[i][u] == ' ');
+                fscanf(fptr, "%c", &map[i][u]);// Read a character from the file and store it in map[i][u]
+            } while (map[i][u] == '\n' || map[i][u] == ' ');// Continue reading if the character is a newline or space.
         }
     }
     fclose(fptr);
+
     // Output the map as a 9x9 array
     printf("Map:\n");
+    // Loop through each row of the map.
     for (int i = 0; i < NUMROWS; i++) {
+        // Loop through each row of the map.
         for (int u = 0; u < NUMCOLS; u++) {
             if(u == 8){
-                printf("%c\n", map[i][u]);
+                printf("%c\n", map[i][u]);// If it's the last column, print the character followed by a newline.
             } else {
-                printf("%c ", map[i][u]);
+                printf("%c ", map[i][u]);// If it's not the last column, print the character followed by a space.
             }
         }
 
     }
     printf("\n");
-
+    // Loop through each row of the map.
     for (int i = 0; i < NUMROWS; i++) {
+        // Loop through each row of the map.
         for (int u = 0; u < NUMCOLS; u++) {
-            int suc = 0;
-            int tem = 0;
-            double mean = 0;
-            double var = 0;
+            //After looping a thousand times, set all variables to 0.
+            int suc = 0;//Initialize the number of step if success
+            int tem = 0;//Initialize the number of success
+            double mean = 0;//Initialize the mean
+            double var = 0;//var+=pow(step_array[a]-mean,2)
             int try = 0;//Number of try
-            int a=0;
+            int a=0;//a is for caluating standard deviation
             int step_array[10000] = {0};//Initialize the array
             
 
@@ -80,12 +87,12 @@ int main(void) {
                     try++;//Number of try plus one
 
                     do {
-                        random_step(&row, &col,&step);
-                    } while (map[row][col] == 'L' && step < 10);
+                        random_step(&row, &col,&step);// Perform a random movement
+                    } while (map[row][col] == 'L' && step < 10);// Continue looping if the current cell is land and the step count is less than 10
 
                     if (map[row][col] == 'B') {
                         suc += step;//the number of step if success
-                        tem++;//the time of success
+                        tem++;//the number of success
                         step_array[a]=step;//for caluating standard deviation
                         a++;//for step_array[a]
                     }
@@ -112,7 +119,7 @@ int main(void) {
         }
     }
 
-    // Output the maps
+    // Output the map
     printf("Probability of escape:\n");
     for (int i = 0; i < NUMROWS; i++) {
         for (int u = 0; u < NUMCOLS; u++) {
@@ -120,7 +127,8 @@ int main(void) {
         }
     }
     printf("\n");
-
+    
+    // Output the mean
     printf("Mean path length:\n");
     for (int i = 0; i < NUMROWS; i++) {
         for (int u = 0; u < NUMCOLS; u++) {
@@ -128,7 +136,8 @@ int main(void) {
         }
     }
     printf("\n");
-
+    
+    // Output the Standard deviation
     printf("Standard deviation of path length:\n");
     for (int i = 0; i < NUMROWS; i++) {
         for (int u = 0; u < NUMCOLS; u++) {
@@ -139,8 +148,10 @@ int main(void) {
     return 0;
 }
 
+//movement
 void random_step(int *row, int *col, int *step) {
-    int move = rand() % 8;
+    int move = rand() % 8;// Generate a random number between 0 and 7
+    // Determine the direction based on the random number
     switch (move) {
         case 0: // North
             if (*row > 0) {
