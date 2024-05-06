@@ -125,7 +125,8 @@ int main(void) {
         }
 
     }
-    // Output the map
+
+    // Output the map of Probability
     printf("Probability of escape:\n");
     for (int i = 0; i < NUMROWS; i++) {
         for (int u = 0; u < NUMCOLS; u++) {
