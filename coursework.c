@@ -33,20 +33,7 @@ int main(void) {
     }
     fclose(fptr);
 
-    // Output the map as a 9x9 array
-    printf("Map:\n");
-    // Loop through each row of the map.
-    for (int i = 0; i < NUMROWS; i++) {
-        // Loop through each row of the map.
-        for (int u = 0; u < NUMCOLS; u++) {
-            if(u == 8){
-                printf("%c\n", map[i][u]);// If it's the last column, print the character followed by a newline.
-            } else {
-                printf("%c ", map[i][u]);// If it's not the last column, print the character followed by a space.
-            }
-        }
 
-    }
     printf("\n");
     // Loop through each row of the map.
     for (int i = 0; i < NUMROWS; i++) {
@@ -116,14 +103,33 @@ int main(void) {
 
 
             }
+            else{
+                printf("Error!"); 
+                exit(1);
+            }
         }
     }
 
+
+    // Output the map as a 9x9 array
+    printf("Map:\n");
+    // Loop through each row of the map.
+    for (int i = 0; i < NUMROWS; i++) {
+        // Loop through each row of the map.
+        for (int u = 0; u < NUMCOLS; u++) {
+            if(u == 8){
+                printf("%c\n", map[i][u]);// If it's the last column, print the character followed by a newline.
+            } else {
+                printf("%c ", map[i][u]);// If it's not the last column, print the character followed by a space.
+            }
+        }
+
+    }
     // Output the map
     printf("Probability of escape:\n");
     for (int i = 0; i < NUMROWS; i++) {
         for (int u = 0; u < NUMCOLS; u++) {
-            printf("%.2f%s", pmap[i][u], (u == NUMCOLS - 1) ? "\n" : " ");
+            printf("%6.2f%s", pmap[i][u], (u == NUMCOLS - 1) ? "\n" : " ");
         }
     }
     printf("\n");
