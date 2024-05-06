@@ -92,7 +92,7 @@ int main(void) {
 
                     if (map[row][col] == 'B') {
                         suc += step;//the number of step if success
-                        tem++;//the number of success
+                        tem ++;//the number of success
                         step_array[a]=step;//for caluating standard deviation
                         a++;//for step_array[a]
                     }
@@ -171,7 +171,7 @@ void random_step(int *row, int *col, int *step) {
                 (*col)++;
         }
             
-            if (*row > 0 && *col < 8) {
+            if (*row >= 0 && *col <= 8) {
                 (*step)++;
                
             }
@@ -191,7 +191,7 @@ void random_step(int *row, int *col, int *step) {
         {
                 (*col)++;
         }
-            if (*row < 8 || *col < 8) {
+            if (*row <= 8 || *col <= 8) {
                 (*step)++;
             }
             break;
@@ -202,7 +202,7 @@ void random_step(int *row, int *col, int *step) {
             }
             break;
         case 5: // Southwest
-                        if (*row < 8)
+            if (*row < 8)
         {
                 (*row)++;
         }
@@ -210,7 +210,7 @@ void random_step(int *row, int *col, int *step) {
         {
                 (*col)--;
         }
-            if (*row < 8 || *col > 0) {
+            if (*row <= 8 || *col >= 0) {
                 (*step)++;
             }
             break;
@@ -229,7 +229,7 @@ void random_step(int *row, int *col, int *step) {
         {
                 (*col)--;
         }
-            if (*row > 0 || *col > 0) {
+            if (*row >= 0 || *col >= 0) {
                 (*step)++;
             }
             break;
