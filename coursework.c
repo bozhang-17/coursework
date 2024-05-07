@@ -104,8 +104,8 @@ int main(void) {
 
             }
             else{
-                printf("Error!"); 
-                exit(1);
+                printf("Error!"); // Print error message
+                exit(1);// Exit the program with error code 1
             }
         }
     }
